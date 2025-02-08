@@ -55,14 +55,14 @@
             padding: 10px;
             margin: 15px 0;
             font-size: 16px;
-            border: 1px solid #032bf3;
+            border: 1px solid #e600ff;
             border-radius: 5px;
             box-sizing: border-box;  /* Prevent input overflow */
         }
         .submit-btn {
-            background: linear-gradient(179deg, #499cff, #050850);
-            border: 2px solid #0a00ff;
-            box-shadow: 0 0 10px rgba(0, 94, 255, 0.8);
+            background: linear-gradient(179deg, #9000ff, #be96d8);
+            border: 2px solid #9000ff;
+            box-shadow: 0 0 10px rgba(153, 0, 255, 0.8);
             color: white;
             border: none;
             padding: 12px 25px;
@@ -71,8 +71,8 @@
             border-radius: 5px;
         }
         .submit-btn:hover {
-            background: linear-gradient(45deg, #050850, #499cff);
-            box-shadow: 0 0 15px rgba(1, 82, 135, 0.9);
+            background: linear-gradient(45deg, #be96d8, #9000ff);
+            box-shadow: 0 0 15px rgba(81, 1, 135, 0.9);
         }
 
         /* Popup Styling */
@@ -221,16 +221,16 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 12px 20px;
-    background: linear-gradient(179deg, #499cff, #050850);
+    padding: 5px 10px;
     color: #fff;
     font-size: 16px;
     font-weight: bold;
     text-decoration: none;
     border-radius: 30px;
     transition:  0.3s ease;
-    border: 2px solid #0a00ff;
-    box-shadow: 0 0 10px rgba(0, 94, 255, 0.8);
+    background: linear-gradient(179deg, #9000ff, #be96d8);
+    border: 2px solid #9000ff;
+    box-shadow: 0 0 10px rgba(153, 0, 255, 0.8);
 }
 
 .download-btn i {
@@ -238,9 +238,36 @@
 }
 
 .download-btn:hover {
-    background-color: #022a72;
-    background: linear-gradient(45deg, #050850, #499cff);
-    box-shadow: 0 0 15px rgba(1, 82, 135, 0.9);
+    background: linear-gradient(45deg, #be96d8, #9000ff);
+    box-shadow: 0 0 10px rgba(86, 0, 144, 0.8);
+}
+.upi-copy-button {
+    display: flex;
+    justify-content: center; /* Horizontal center */
+    align-items: center; /* Vertical center */
+    background: linear-gradient(179deg, #9000ff, #be96d8);
+    border: 2px solid #9000ff;
+    padding: 5px 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 30px; /* Rounded button */
+    transition: 0.3s;
+    max-width: 100%;
+    white-space: nowrap;
+    margin: 10px auto; /* Upar aur neeche space */
+    box-shadow: 0 0 10px rgba(153, 0, 255, 0.8);
+    color: white; /* UPI ID ka text white */
+}
+
+.upi-copy-button:hover {
+    background: linear-gradient(45deg, #be96d8, #9000ff);
+    box-shadow: 0 0 10px rgba(86, 0, 144, 0.8);
+}
+
+.upi-copy-button i {
+    margin-left: 10px;
+    color: white; /* Copy icon bhi white hoga */
 }
 
     </style>
@@ -265,11 +292,17 @@
             <p><strong>Step 1:</strong> Scan the QR code below and pey the exact package amount.</p>
             <div class="qr-code">
                 <img src="qr-codes.jpg" alt="QR Code">
-                
+
                 <a href="qr-codes.jpg" download="qr-codes.jpg" class="download-btn">
                     <i class="fa-solid fa-download"></i> DOWNLOAD QR
                 </a>
 
+                <p class="special-text">If you want to pay using UPI, click on the UPI button below.👇</p>
+
+                <button class="upi-copy-button" onclick="copyUPIID()">
+                    <span id="upi-text">Q140257992@ybl</span>
+                    <i class="fas fa-copy"></i>
+                </button>
                 <form id="paymentForm">
                     <input type="text" id="transactionId" class="input-box" placeholder="Enter UTR Namber" required>
                     <button type="submit" class="submit-btn">Submit</button>
@@ -363,6 +396,17 @@
             display.textContent = `${hours}:${minutes}:${seconds}`;
         }, 1000);
     }
+        // UPI ID Copy Karne Ke Liye Function
+    function copyUPIID() {
+            const upiID = document.getElementById("upi-text").innerText;
+            const tempInput = document.createElement("input");
+            tempInput.value = upiID;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            alert("UPI ID copied: " + upiID);
+        }
 
     </script>
 </body>
