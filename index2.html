@@ -264,8 +264,67 @@
             font-size: 18px;
             color: #ff0084;
         }
+
+        .telegram-support {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #0088cc;
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+
+        /* Icon Style */
+        .telegram-support i {
+            font-size: 24px;
+        }
+
+        /* Hover Effect */
+        .telegram-support:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: absolute;
+            bottom: 70px;
+            background: #0088cc;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 14px;
+            display: none;
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .telegram-support:hover .tooltip {
+            display: block;
+        }
     </style>
 </head>
+
+    <!-- Telegram Button -->
+    <div class="telegram-support" onclick="openTelegram()">
+        <span class="tooltip">Chat on Telegram</span>
+        <i class="fab fa-telegram-plane"></i>
+    </div>
+
+    <script>
+        function openTelegram() {
+            window.open("https://t.me/joya_tiwari", "_blank");
+        }
+    </script>
+
+    
 <!-- Header -->
 <div class="header">
     <div class="menu-icon"><i class="fas fa-bars"></i></div>
@@ -293,7 +352,7 @@
       </div>
       <img src="verify.png" alt="Varification Tick" class="product-image">
       <h3 class="product-name">Instagram Varification Tick</h3>
-        <i class="fa-solid fa-hourglass-start"></i> for one year
+        <i class="fa-regular fa-clock"></i> for one year
       <div class="price">
         <span class="original-price">₹650</span>
         <span class="discounted-price">₹299</span>
@@ -520,7 +579,7 @@
         <div class="footer">
             <p class="owners">Owned by <span>Vikash Choudhary</span></p>
             <p class="special-text">This offer is for a limited time so don't waste your time and select your deal on time</p>
-            <p>Customer support <a href="https://wa.me/+16134801883?text=Mujhe%20Help%20chahiye%20Mem" target="_blank">WhatsApp</a></p>
+            <p>Customer support <a href="https://t.me/joya_tiwari" target="_blank">Taligram/a></p>
           </div>
 
 
