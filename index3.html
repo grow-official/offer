@@ -270,11 +270,70 @@
     color: white; /* Copy icon bhi white hoga */
 }
 
+        .telegram-support {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #0088cc;
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+
+        /* Icon Style */
+        .telegram-support i {
+            font-size: 24px;
+        }
+
+        /* Hover Effect */
+        .telegram-support:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: absolute;
+            bottom: 70px;
+            background: #0088cc;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 14px;
+            display: none;
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .telegram-support:hover .tooltip {
+            display: block;
+        }
+
     </style>
 
 </head>
 
 <body>
+
+    <!-- Telegram Button -->
+    <div class="telegram-support" onclick="openTelegram()">
+        <span class="tooltip">Chat on Telegram</span>
+        <i class="fab fa-telegram-plane"></i>
+    </div>
+
+    <script>
+        function openTelegram() {
+            window.open("https://t.me/joya_tiwari", "_blank");
+        }
+    </script>
+
+    
     <!-- Header -->
     <div class="header">
         <div class="menu-icon"><i class="fas fa-bars"></i></div>
@@ -308,7 +367,7 @@
                     <button type="submit" class="submit-btn">Submit</button>
                 <p><strong>Step 2:</strong>  ट्रांजैक्शन आईडी को कॉपी कर के 'ENTER TRANSACTION ID' के अंदर पेस्ट कर दो और तीन से चार मिनट वेट करो आपके फॉलो वर्स आपकी आईडी पर मिल जाएगा </p>
                 <p><strong>Need help:</strong>  अगर आपको किसी भी तरह की परेशानी हो तो आप हमारे कस्टमर हेल्प लाइन स्पोर्ट से व्हाट्सएप से कांटेक्ट कर सकते हो 👇👇 </p>
-                <p>Joya Tiwari <a href="https://wa.me/+16134801883?text=Mujhe%20Help%20chahiye%20Mem" target="_blank">WhatsApp</a></p>
+                <p>Joya Tiwari <a href="https://t.me/joya_tiwari" target="_blank">telegram</a></p>
                 </form>
             </div>
         </div>
