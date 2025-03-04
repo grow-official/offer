@@ -304,40 +304,31 @@ input[type="text"] {
         initializeTimer(duration, display);
     });
 
-    function initializeTimer(duration, display) {
-        let endTime = sessionStorage.getItem('endTime');
+    document.addEventListener('DOMContentLoaded', () => {
+    const endDate = new Date("March 14, 2025 23:59:59").getTime();
+    const display = document.querySelector('#time');
 
-        // Agar endTime nahi hai to naya set karein
-        if (!endTime || Date.now() > endTime) {
-            endTime = Date.now() + duration * 1000;  // Naya 24 ghante ka set karein
-            sessionStorage.setItem('endTime', endTime);
+    function updateTimer() {
+        const now = new Date().getTime();
+        const remaining = endDate - now;
+
+        if (remaining <= 0) {
+            display.textContent = "00:00:00:00"; // Timer खत्म होने के बाद
+            return;
         }
 
-        updateTimer(endTime, display);
+        let days = String(Math.floor(remaining / (1000 * 60 * 60 * 24))).padStart(2, '0');
+        let hours = String(Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+        let minutes = String(Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+        let seconds = String(Math.floor((remaining % (1000 * 60)) / 1000)).padStart(2, '0');
+
+        display.textContent = `${days}d : ${hours}h : ${minutes}m : ${seconds}s`;
     }
 
-    function updateTimer(endTime, display) {
-        let timerInterval = setInterval(function () {
-            let now = Date.now();
-            let remaining = Math.floor((endTime - now) / 1000);
+    updateTimer();
+    setInterval(updateTimer, 1000); // Timer हर सेकंड अपडेट होगा
+});
 
-            if (remaining <= 0) {
-                // Timer 0 par aaya to fir se reset karein
-                sessionStorage.setItem('endTime', Date.now() + 24 * 60 * 60 * 1000);
-                remaining = 24 * 60 * 60;
-            }
-
-            let hours = parseInt(remaining / 3600, 10);
-            let minutes = parseInt((remaining % 3600) / 60, 10);
-            let seconds = parseInt(remaining % 60, 10);
-
-            hours = hours < 10 ? "0" + hours : hours;
-            minutes = minutes < 10 ? "0" + minutes : minutes;
-            seconds = seconds < 10 ? "0" + seconds : seconds;
-
-            display.textContent = `${hours}:${minutes}:${seconds}`;
-        }, 1000);
-    }
 </script>
 </head>
 
