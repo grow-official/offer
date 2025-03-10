@@ -126,19 +126,102 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .reviews-section {
-            text-align: center;
-            padding: 30px;
-            background-color: #fff;
-        }
-
-        .review {
-            margin: 15px auto;
-            padding: 20px;
+        .comments-section {
+            width: 100%;
+            max-width: 450px;
+            margin: 20px auto;
             border: 1px solid #ddd;
             border-radius: 10px;
-            max-width: 600px;
-            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+        }
+
+        .comment {
+            display: flex;
+            align-items: flex-start;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comment:last-child {
+            border-bottom: none;
+        }
+
+        .comment img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .comment-content {
+            flex: 1;
+        }
+
+        .username {
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .verified-badge {
+    width: 18px;  /* अब थोड़ा बड़ा */
+    height: auto;  
+    max-width: 18px; 
+    max-height: 18px;
+    margin-left: 4px;
+    display: inline-block; 
+    vertical-align: middle;
+}
+
+
+
+
+
+        .comment-text {
+            font-size: 14px;
+            margin: 3px 0;
+        }
+
+        .comment-details {
+            font-size: 12px;
+            color: gray;
+        }
+
+        .emoji-bar {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+            padding: 10px 0;
+            border-top: 1px solid #ddd;
+        }
+
+        .emoji-bar span {
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .add-comment {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+        }
+
+        .add-comment input {
+            flex: 1;
+            border: none;
+            padding: 8px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .add-comment button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #007aff;
+            font-weight: bold;
         }
 
         footer {
@@ -188,87 +271,103 @@
     max-width: 100%;
     height: auto;
 }
-/* Review Section */
-.reviews-section {
-  text-align: center;
-  padding: 30px 0px;
-  background-color: #ffffff;
-  margin-top: 20px;
+.comments-section {
+            width: 100%;
+            max-width: 450px;
+            margin: 20px auto;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        .comment {
+            display: flex;
+            align-items: flex-start;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comment:last-child {
+            border-bottom: none;
+        }
+
+        .comment img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .comment-content {
+            flex: 1;
+        }
+
+        .username {
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .verified-badge {
+    width: 18px;  /* अब थोड़ा बड़ा */
+    height: auto;  
+    max-width: 18px; 
+    max-height: 18px;
+    margin-left: 4px;
+    display: inline-block; 
+    vertical-align: middle;
 }
 
-.reviews-section h2, .reviews-section h3 {
-  font-size: 24px;
-  color: #333;
-  margin-bottom: 15px;
-}
 
-.review-list {
-  max-width: 600px;
-  margin: 0 auto 20px;
-  text-align: left;
-}
 
-.review {
-  background-color: #ffffff;
-  padding: 15px;
-  margin: 10px 0;
-  border-radius: 8px;
-  border: 1px solid #dbdbdb;
-  border-radius: 30px;
-  box-shadow: 7px 7px 7px rgb(24 29 173 / 24%);
-}
 
-.review-form {
-  max-width: 600px;
-  margin: 0 auto;
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 30px;
-  border: 1px solid #dbdbdb;
-  box-shadow: 10px 10px 7px rgb(24 29 173 / 24%);
-}
 
-.review-form label {
-  display: block;
-  margin: 10px 0 5px;
-  font-weight: bold;
-  color: #262626;
-}
+        .comment-text {
+            font-size: 14px;
+            margin: 3px 0;
+        }
 
-.review-form input[type="text"],
-.review-form select,
-.review-form textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #000000;
-  border-radius: 4px;
-  box-shadow: 6px 6px 6px rgba(255, 0, 221, 0.24);
-}
+        .comment-details {
+            font-size: 12px;
+            color: gray;
+        }
 
-.review-form button {
-  background-color: #ff0084;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 30px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
+        .emoji-bar {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+            padding: 10px 0;
+            border-top: 1px solid #ddd;
+        }
 
-.review-form button:hover {
-  background-color: #6f013a;
-}
-/* Input Field Styles */
-input[type="text"] {
-  width: 100%;
-  padding: 10px;
-  margin: 15px 0;
-  border: 1px solid #dbdbdb;
-  border-radius: 4px;
-  font-size: 16px;
-}
+        .emoji-bar span {
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .add-comment {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+        }
+
+        .add-comment input {
+            flex: 1;
+            border: none;
+            padding: 8px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .add-comment button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #007aff;
+            font-weight: bold;
+        }
     </style>
     
     <script>
@@ -369,6 +468,147 @@ input[type="text"] {
     <div class="photo-section">
         <div class="photo-section">
             <img src="39cc641c6920436233bdfd81d908bca2.jpg" alt="Photo 1" class="photo">
+
+            <h3>comments</h3>
+        <div class="comments-section">
+            <div class="comment">
+                <img src="nikhilkumar9_90.jpg" alt="User">
+                <div class="comment-content">
+                    <div class="username">
+                        nikhilkumar9_90
+                        <img src="verify.png" class="verified-badge" alt="Verified">
+                    </div>
+                    <div class="comment-text">सर ब्लू टिक देने के लिए ध्यानवाद मार्केट में बहुत सारे फ्रोड चल रहे है लेकिन आप उन में से नहीं हो thenk u so much 🥰</div>
+                    <div class="comment-details">11d</div>
+                </div>
+            </div>
+        
+            <div class="comment">
+                <img src="mahi_rawat_pilkhwal.jpg" alt="User">
+                <div class="comment-content">
+                    <div class="username">
+                        mahi_rawat_pilkhwal
+                        <img src="verify.png" class="verified-badge" alt="Verified">
+                    </div>
+                    <div class="comment-text">Thenks you sir mujhe blue tik mil gya only ₹299 wow 😳💞💗</div>
+                    <div class="comment-details">7h</div>
+                </div>
+            </div>
+        
+            <div class="comment">
+                <img src="teethapar.jpg" alt="User">
+                <div class="comment-content">
+                    <div class="username">
+                        teethapar
+                        <img src="verify.png" class="verified-badge" alt="Verified">
+                    </div>
+                    <div class="comment-text">थैंक यू सर मुझे blue tick मिल गए 25 मिनट के अंदर-अंदर</div>
+                    <div class="comment-details">2w</div>
+                </div>
+            </div>
+        
+            <div class="comment">
+                <img src="ganpat_fogera.jpg" alt="User">
+                <div class="comment-content">
+                    <div class="username">
+                        ganpat_fogera
+                        <img src="verify.png" class="verified-badge" alt="Verified">
+                    </div>
+                    <div class="comment-text">Sar mere ko 5000 folower mil Gaye vah bhi ekadam asali follower.</div>
+                    <div class="comment-details">6d</div>
+                </div>
+            </div>
+        
+            <div class="comment">
+                <img src="dimpalchoudhary_official.jpg" alt="User">
+                <div class="comment-content">
+                    <div class="username">
+                        dimpalchoudhary_official
+                        <img src="verify.png" class="verified-badge" alt="Verified">
+                    </div>
+                    <div class="comment-text">थैंक यू सर आपकी सर्विस मुझे बहुत अच्छी लगी.</div>
+                    <div class="comment-details">11w</div>
+                </div>
+            </div>
+        
+            <div class="comment">
+                <img src="sameer_khaan786.jpg" alt="User">
+                <div class="comment-content">
+                    <div class="username">
+                        sameer_khaan786
+                        <img src="verify.png" class="verified-badge" alt="Verified">
+                    </div>
+                    <div class="comment-text">Sar aapki service bahut acchi lagi Maine mere dost Ko bhi follow lene ke bare mein bataya</div>
+                    <div class="comment-details">2w</div>
+                </div>
+            </div>
+        
+            <div class="comment">
+                <img src="raj116_1.jpg" alt="User">
+                <div class="comment-content">
+                    <div class="username">
+                        raj116_1
+                        <img src="verify.png" class="verified-badge" alt="Verified">
+                    </div>
+                    <div class="comment-text">Received folowers instantly, very happy with Grow Enterprise</div>
+                    <div class="comment-details">1w</div>
+                </div>
+            </div>
+        
+            <div class="comment">
+                <img src="sandip9978.jpg" alt="User">
+                <div class="comment-content">
+                    <div class="username">
+                        sandip9978
+                        <img src="verify.png" class="verified-badge" alt="Verified">
+                    </div>
+                    <div class="comment-text">Thenks you sir mujhe blue tik aur 20k followers dono mil gya only wow 😳💞💗</div>
+                    <div class="comment-details">2d</div>
+                </div>
+            </div>
+        
+            <div class="emoji-bar">
+                <span onclick="addEmoji('❤️')">❤️</span>
+                <span onclick="addEmoji('🔥')">🔥</span>
+                <span onclick="addEmoji('👏')">👏</span>
+                <span onclick="addEmoji('😢')">😢</span>
+                <span onclick="addEmoji('😍')">😍</span>
+                <span onclick="addEmoji('🙂')">🙂</span>
+                <span onclick="addEmoji('😂')">😂</span>
+                <span onclick="addEmoji('👌')">👌</span>
+                <span onclick="addEmoji('👍')">👍</span>
+                <span onclick="addEmoji('💕')">💕</span>
+                <span onclick="addEmoji('🔥')">🔥</span>
+                <span onclick="addEmoji('😱')">😱</span>
+            </div>
+        
+            <div class="add-comment">
+                <input type="text" id="commentInput" placeholder="Add a comment for the service...">
+                <button onclick="addComment()">Post</button>
+            </div>
+        </div>
+        
+        <script>
+            function addEmoji(emoji) {
+                const input = document.getElementById("commentInput");
+                input.value += emoji;
+            }
+        
+            function addComment() {
+                const input = document.getElementById("commentInput");
+                const commentText = input.value.trim();
+        
+                if (commentText === "") {
+                    alert("Please enter a comment.");
+                    return;
+                }
+        
+                alert("You need to purchase our service before commenting.");
+                input.value = "";
+            }
+        </script>
+
+
             <h3>👇 Blue tick prufs 👇</h3>
             <img src="Photo 0.1.jpg" alt="Photo 1" class="photo">
             <img src="Photo 0.2.jpg" alt="Photo 1" class="photo">
@@ -387,55 +627,8 @@ input[type="text"] {
             <img src="Photo 8.jpg" alt="Photo 8" class="photo">
         </div>
 
-    <!-- Reviews Section (Visible only on Home Page) -->
-<section id="reviews" class="reviews-section">
-    <h2>Customer Comments</h2>
-    <div class="review-list">
-        <div class="review">
-            <p><strong>@arpita.kaur:</strong> ⭐⭐⭐⭐⭐ सर ब्लू टिक देने के लिए ध्यानवाद मार्केट में बहुत सारे फ्रोड चल रहे है लेकिन आप उन में से नहीं हो thenk u so much 🥰</p>
-        </div>
-        <div class="review">
-            <p><strong>@sunil_bishnoii2:</strong> ⭐⭐⭐⭐⭐ Thenks you sir mujhe blue tik mil gya only ₹299 wow 😳💞💗</p>
-        </div>
-        <div class="review">
-            <p><strong>सोनल:</strong> ⭐⭐⭐⭐⭐ थैंक यू सर मुझे 5000 फॉलोअर मिल गए 25 मिनट के अंदर-अंदर</p>
-        </div>
-        <div class="review">
-            <p><strong>Rahul bishnoi:</strong> ⭐⭐⭐⭐⭐ Sar mere ko 5000 folower mil Gaye vah bhi ekadam asali follower.</p>
-        </div>
-        <div class="review">
-            <p><strong>कीर्तिका:</strong> ⭐⭐⭐⭐⭐ थैंक यू सर आपकी सर्विस मुझे बहुत अच्छी लगी.</p>
-        </div>
-        <div class="review">
-            <p><strong>Vikash Verma:</strong> ⭐⭐⭐⭐⭐ Sar aapki service bahut acchi lagi Maine mere dost Ko bhi follow lene ke bare mein bataya</p>
-        </div>
-        <div class="review">
-            <p><strong>Ravi choudhary:</strong> ⭐⭐⭐⭐⭐ Received folowers instantly, very happy with instaBoost.</p>
-        </div>
-    </div>
 
-    <!-- Add Review Form (Visible only on Home Page) -->
-    <h3>Leave Your Review</h3>
-    <form class="review-form" onsubmit="addReview(event)">
-        <label for="name">Name:</label>
-        <input type="text" id="name" placeholder="Your name" required>
-        
-        <label for="rating">Rating:</label>
-        <select id="rating">
-            <option value="5">⭐⭐⭐⭐⭐</option>
-            <option value="4">⭐⭐⭐⭐</option>
-            <option value="3">⭐⭐⭐</option>
-            <option value="2">⭐⭐</option>
-            <option value="1">⭐</option>
-        </select>
-        
-        <label for="comment">Comment:</label>
-        <textarea id="comment" rows="3" placeholder="Write your review here..." required></textarea>
-        
-        <button type="submit">Submit Review</button>
-    </form>
-</section>
-</section>
+
 
     <footer>
         <img src="google_pay_footer.webp" alt="Footer Image">
