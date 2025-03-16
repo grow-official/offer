@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ऑर्डर प्रोसेसिंग</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #fafafa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 10px;
+        }
+
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 350px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #e1306c;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .button {
+            width: 100%;
+            padding: 12px;
+            background: #e1306c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .button:hover {
+            background: #c1275b;
+        }
+
+        /* Popup Styles */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: white;
+            width: 90%;
+            max-width: 350px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .popup.active {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .popup i {
+            font-size: 50px; /* आइकॉन को और प्रोफेशनल दिखाने के लिए बड़ा किया */
+            color: #e1306c;
+            margin-bottom: 10px;
+        }
+
+        .popup h2 {
+            font-size: 20px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .popup p {
+            margin: 10px 0;
+            font-size: 16px;
+            color: #555;
+        }
+
+        .popup .highlight {
+            font-weight: bold;
+            color: #e1306c;
+        }
+
+        .popup a {
+            text-decoration: none;
+            font-weight: bold;
+            color: #e1306c;
+        }
+
+        .popup a:hover {
+            text-decoration: underline;
+        }
+
+        .popup .close-btn {
+            background: #e1306c;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        .popup .close-btn:hover {
+            background: #c1275b;
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+            display: none;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        
+
+
+        header {
+            background-color: #fff;
+            padding: 14px;
+            text-align: center;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .banner {
+            width: 100%;
+            display: block;
+            height: auto;
+        }
+
+        .timer-box {
+            width: 100%;
+            background-color: #e0f7fa;
+            padding: 10px;
+            text-align: center;
+            margin-top: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .timer {
+            font-size: 18px;
+            color: #ff0084;
+        }
+
+        .recharge-form {
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 30px;
+            box-shadow: 1px 2px 10px 10px rgb(16 0 191 / 10%);
+            max-width: 600px;
+        }
+
+        .recharge-form h3 {
+            font-size: 22px;
+            color: #ff0084;
+            margin-bottom: 15px;
+        }
+
+        .provider {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+        }
+
+        .provider-option {
+            flex: 1;
+            margin: 0 5px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .provider-option.selected {
+            background-color: #ff0084;
+            color: white;
+        }
+
+        .recharge-form input[type="text"], 
+        .recharge-form input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ff0084;
+            border-radius: 5px;
+        }
+
+        .recharge-form input[type="submit"] {
+            background: linear-gradient(179deg, #ff008c, #ff0000 );
+            border: 2px solid #ff00b3;
+            box-shadow: 0 0 10px rgba(255, 0, 51, 0.8);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .photo-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px auto;
+            max-width: 1200px;
+        }
+
+        .photo {
+            width: calc(50% - 10px);
+            max-width: 400px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .comments-section {
+            width: 100%;
+            max-width: 450px;
+            margin: 20px auto;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        .comment {
+            display: flex;
+            align-items: flex-start;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comment:last-child {
+            border-bottom: none;
+        }
+
+        .comment img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .comment-content {
+            flex: 1;
+        }
+
+        .username {
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .verified-badge {
+    width: 18px;  /* अब थोड़ा बड़ा */
+    height: auto;  
+    max-width: 18px; 
+    max-height: 18px;
+    margin-left: 4px;
+    display: inline-block; 
+    vertical-align: middle;
+}
+
+
+
+
+
+        .comment-text {
+            font-size: 14px;
+            margin: 3px 0;
+        }
+
+        .comment-details {
+            font-size: 12px;
+            color: gray;
+        }
+
+        .emoji-bar {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+            padding: 10px 0;
+            border-top: 1px solid #ddd;
+        }
+
+        .emoji-bar span {
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .add-comment {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+        }
+
+        .add-comment input {
+            flex: 1;
+            border: none;
+            padding: 8px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .add-comment button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #007aff;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        footer img {
+            width: 100%;
+        }
+
+        /* Mobile Responsive */
+        @media screen and (max-width: 768px) {
+            .photo {
+                width: 100%;
+            }
+            
+            .recharge-form {
+                width: 90%;
+            }
+        }
+        .header {
+            background-color: #ffffff;
+            padding: 1px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu-icon, .profile-icon {
+            font-size: 20px;
+            color: #ff0084;
+        }
+        
+        .logo img {
+            height: 40px;
+            padding: 3px;
+        }
+
+        /* Offer section */
+.offer-section {
+    text-align: center;
+    padding: 1px;
+}
+
+.offer-section img {
+    max-width: 100%;
+    height: auto;
+}
+.comments-section {
+            width: 100%;
+            max-width: 450px;
+            margin: 20px auto;
+            border: 1px solid #ddd;
+            border-radius: 40px;
+            padding: 20px;
+        }
+
+        .comment {
+            display: flex;
+            align-items: flex-start;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comment:last-child {
+            border-bottom: none;
+        }
+
+        .comment img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .comment-content {
+            flex: 1;
+        }
+
+        .username {
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .verified-badge {
+    width: 18px;  /* अब थोड़ा बड़ा */
+    height: auto;  
+    max-width: 18px; 
+    max-height: 18px;
+    margin-left: 4px;
+    display: inline-block; 
+    vertical-align: middle;
+}
+
+
+
+
+
+        .comment-text {
+            font-size: 14px;
+            margin: 3px 0;
+        }
+
+        .comment-details {
+            font-size: 12px;
+            color: gray;
+        }
+
+        .emoji-bar {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+            padding: 10px 0;
+            border-top: 1px solid #ddd;
+        }
+
+        .emoji-bar span {
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .add-comment {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+        }
+
+        .add-comment input {
+            flex: 1;
+            border: none;
+            padding: 8px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .add-comment button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #007aff;
+            font-weight: bold;
+        }
+
+        /* Popup background */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        /* Popup Box */
+        .popup {
+            background: #ff69b4; /* Pink Theme */
+            color: white;
+            padding: 20px;
+            width: 320px;
+            text-align: center;
+            border-radius: 10px;
+            position: relative;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        /* Close Button */
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: white;
+            color: #ff69b4;
+            border: none;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 50%;
+        }
+
+        .close-btn:hover {
+            background: #ff1493;
+            color: white;
+        }
+
+        /* Fade-in Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="menu-icon"><i class="fas fa-bars"></i></div>
+        <div class="logo"><img src="web logo.png" alt="img 1"></div>
+        <div class="profile-icon"><i class="fas fa-user-circle"></i></div>
+    </div>
+
+
+    <div class="container">
+        <h1><i class="fa-brands fa-instagram"></i> ऑर्डर प्रोसेसिंग</h1>
+        <div class="input-group">
+            <label><i class="fa-solid fa-bolt"></i> सर्विस का नाम:</label>
+            <input type="text" id="serviceName" placeholder="उदा: Blue Tick">
+        </div>
+        <div class="input-group">
+            <label><i class="fa-solid fa-money-bill"></i> आपने पहले कितना पे किया था (₹):</label>
+            <input type="number" id="serviceAmount" placeholder="उदा: 299">
+        </div>
+        <div class="input-group">
+            <label><i class="fa-solid fa-credit-card"></i> अब आपको प्रोसेसिंग चार्ज देना है (₹):</label>
+            <input type="number" id="processingFee" placeholder="उदा: 103">
+        </div>
+        <div class="input-group">
+            <label><i class="fa-brands fa-instagram"></i> इंस्टाग्राम यूजर आईडी:</label>
+            <input type="text" id="instagramId" placeholder="उदा: vikiiii.04">
+        </div>
+        <button class="button" onclick="createOrder()">Create Order</button>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Popup -->
+    <div class="popup" id="popup">
+        <i class="fa-solid fa-spinner fa-spin"></i>
+        <h2>Processing Order...</h2>
+        <p id="orderText"></p>
+        <p id="processingBreakdown"></p>
+        <p><i class="fa-solid fa-info-circle" style="font-size: 20px;"></i> <span id="statusUpdate"></span></p>
+        <p><i class="fa-brands fa-instagram" style="font-size: 20px;"></i> <a href="#" target="_blank" id="userId"></a></p>
+        <button class="close-btn" onclick="closePopup()">Close</button>
+    </div>
+
+    <script>
+        function createOrder() {
+            const serviceName = document.getElementById('serviceName').value;
+            const serviceAmount = document.getElementById('serviceAmount').value;
+            const processingFee = document.getElementById('processingFee').value;
+            const instagramId = document.getElementById('instagramId').value.trim();
+
+            if (!serviceName || !serviceAmount || !processingFee || !instagramId) {
+                alert("कृपया सभी जानकारी भरें!");
+                return;
+            }
+
+            document.getElementById('orderText').innerHTML = `<b>${serviceName}</b> के लिए आपका ऑर्डर पेंडिंग है।`;
+            document.getElementById('processingBreakdown').innerHTML = `आपने पहले <span class="highlight">₹${serviceAmount}</span> पे किया था। अब प्रोसेसिंग के लिए <span class="highlight">₹${processingFee}</span> देना है।`;
+            document.getElementById('statusUpdate').innerHTML = `बस ये प्रोसेसिंग चार्ज देने के बाद <b>आपका ऑर्डर तुरंत पूरा हो जाएगा!</b> 🚀`;
+
+            document.getElementById('userId').setAttribute('href', `https://www.instagram.com/${instagramId.replace('@', '')}`);
+            document.getElementById('userId').innerText = `@${instagramId}`;
+
+            document.getElementById('overlay').classList.add('active');
+            document.getElementById('popup').classList.add('active');
+        }
+
+        function closePopup() {
+            document.getElementById('overlay').classList.remove('active');
+            document.getElementById('popup').classList.remove('active');
+        }
+    </script>
+
+</body>
+</html>
